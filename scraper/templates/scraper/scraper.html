@@ -1,0 +1,24 @@
+{% extends 'accounts/base.html' %}
+{% block title %}Scraper{% endblock %}
+{% block content %}
+<h2>Scraper Educativo</h2>
+<form method="post">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="keyword" class="form-label">Palabra clave</label>
+    <input type="text" name="keyword" id="keyword" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-info">Buscar</button>
+</form>
+
+{% if results %}
+<h3 class="mt-4">Resultados</h3>
+<table class="table table-bordered">
+  <tbody>
+    {% for r in results %}
+    <tr><td>{{ r }}</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+{% endblock %}

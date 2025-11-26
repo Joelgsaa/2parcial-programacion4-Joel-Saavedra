@@ -1,0 +1,30 @@
+{% extends 'accounts/base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h2>Mis Alumnos</h2>
+<a href="{% url 'crear_alumno' %}" class="btn btn-primary mb-3">Nuevo Alumno</a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Edad</th>
+      <th>Carrera</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for alumno in alumnos %}
+    <tr>
+      <td>{{ alumno.nombre }}</td>
+      <td>{{ alumno.edad }}</td>
+      <td>{{ alumno.carrera }}</td>
+      <td>
+        <a href="{% url 'enviar_pdf' alumno.id %}" class="btn btn-sm btn-warning">Enviar PDF</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4">No hay alumnos cargados.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
