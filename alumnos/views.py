@@ -36,7 +36,9 @@ def enviar_pdf(request, alumno_id):
     p.save()
     buffer.seek(0)
 
-    email = EmailMessage("Datos Alumno", "Adjunto PDF", to=[request.user.email])
+    email = EmailMessage("Datos Alumno",
+    "Adjunto PDF",
+    to=["ematevez@gmail.com"])
     email.attach("alumno.pdf", buffer.read(), "application/pdf")
     email.send()
     return redirect("dashboard")
